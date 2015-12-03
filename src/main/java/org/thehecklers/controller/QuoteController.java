@@ -1,9 +1,7 @@
 package org.thehecklers.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.thehecklers.entity.Quote;
 import org.thehecklers.entity.QuoteSource;
 import org.thehecklers.repository.QuoteRepo;
@@ -26,6 +24,14 @@ public class QuoteController {
             quotesForSource += iq.next().getQuoteText() + "<br>";
         }
 
-        return "All quotes for source ID: " + sourceId + ": <br><br>" + quotesForSource;
+        return "All quotes for source ID: " + sourceId + "<br><br>" + quotesForSource;
+    }
+
+    @RequestMapping(value = "/sources/{sourceId}/quote", method = RequestMethod.POST)
+    public Quote addQuote(@PathVariable(value = "sourceId") Integer sourceId,
+                          @RequestParam(name = "quoteText") String quoteText,
+                          @RequestParam(name = "context", required = false) String context) {
+
+        return quoteRepo.save(new Quote(quoteText, context, new QuoteSource(sourceId)));
     }
 }

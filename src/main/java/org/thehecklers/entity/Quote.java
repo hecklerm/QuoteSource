@@ -20,6 +20,12 @@ public class Quote {
     public Quote() {
     }
 
+    public Quote(String quoteText, String context, QuoteSource quoteSource) {
+        this.quoteText = quoteText;
+        this.context = context;
+        this.quoteSource = quoteSource;
+    }
+
     public Integer getId() {
         return id;
     }
