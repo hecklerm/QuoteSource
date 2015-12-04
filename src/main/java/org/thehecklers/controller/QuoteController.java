@@ -16,8 +16,10 @@ public class QuoteController {
     @Autowired
     private QuoteRepo quoteRepo;
 
+
+
     @RequestMapping("/sources/{sourceId}/quotes")
-    public String getAllSources(@PathVariable(value = "sourceId") Integer sourceId) {
+    public String getAllQuotesForSource(@PathVariable(value = "sourceId") Integer sourceId) {
         String quotesForSource = "";
         Iterator<Quote> iq = quoteRepo.findByQuoteSource(new QuoteSource(sourceId)).iterator();
         while (iq.hasNext()) {
