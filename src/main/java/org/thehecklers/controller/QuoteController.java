@@ -7,6 +7,7 @@ import org.thehecklers.entity.QuoteSource;
 import org.thehecklers.repository.QuoteRepo;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by markheckler on 11/24/15.
@@ -35,5 +36,11 @@ public class QuoteController {
                           @RequestParam(name = "context", required = false) String context) {
 
         return quoteRepo.save(new Quote(quoteText, context, new QuoteSource(sourceId)));
+    }
+
+    @RequestMapping(value = "/random")
+    public Quote randomQuote() {
+        List<Quote> randomQuotes = quoteRepo.randomQuotes();
+        return randomQuotes.get(0);
     }
 }

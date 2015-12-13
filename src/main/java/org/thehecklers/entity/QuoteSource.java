@@ -16,6 +16,15 @@ public class QuoteSource {
     public QuoteSource() {
     }
 
+    public QuoteSource(String name) {
+        this.name = name;
+    }
+
+    public QuoteSource(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public QuoteSource(Integer id) {
         this.id = id;
     }
